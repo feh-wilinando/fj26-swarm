@@ -54,8 +54,8 @@
         </dependency>
 
         <!--<dependency>-->
-            <!--<groupId>org.wildfly.swarm</groupId>-->
-            <!--<artifactId>jpa</artifactId>-->
+        <!--<groupId>org.wildfly.swarm</groupId>-->
+        <!--<artifactId>jpa</artifactId>-->
         <!--</dependency>-->
 
         <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
@@ -81,13 +81,30 @@
         </dependency>
 
 
-
         <!--<dependency>-->
-            <!--<groupId>org.wildfly.swarm</groupId>-->
-            <!--<artifactId>mysql</artifactId>-->
-            <!--<version>${version.wildfly.swarm}</version>-->
+        <!--<groupId>org.wildfly.swarm</groupId>-->
+        <!--<artifactId>mysql</artifactId>-->
+        <!--<version>${version.wildfly.swarm}</version>-->
         <!--</dependency>-->
 
     </dependencies>
+
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.wildfly.swarm</groupId>
+                <artifactId>wildfly-swarm-plugin</artifactId>
+                <version>${version.wildfly.swarm}</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>package</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>
