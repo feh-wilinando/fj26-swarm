@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+    <title>Sistema de Notas Fiscais</title>
+</h:head>
+<h:body>
+
+    <h2>
+        <h:outputText value="Novo Produto" rendered="#{empty produtoBean.produto.id}"/>
+        <h:outputText value="Editar Produto" rendered="#{not empty produtoBean.produto.id}"/>
+    </h2>
+    <h:form id="formProduto">
+        <h:inputHidden value="#{produtoBean.produto.id}"/>
+
+        <h:panelGrid columns="2">
+            <h:outputLabel value="Nome:" for="nome"/>
+            <h:inputText id="nome" value="#{produtoBean.produto.nome}"/>
+            <h:outputLabel value="Descrição:" for="descricao"/>
+            <h:inputTextarea id="descricao" value="#{produtoBean.produto.descricao}"/>
+            <h:outputLabel value="Preço:" for="preco"/>
+            <h:inputText id="preco" value="#{produtoBean.produto.preco}"/>
+            <h:commandButton value="Gravar" action="#{produtoBean.gravar}">
+                <f:ajax render="@form :formTabela" execute="@form"/>
+            </h:commandButton>
+            <h:commandButton value="Cancelar" style="display:#{not empty produtoBean.produto.id? 'block': 'none'}"
+                             action="${produtoBean.cancelar}">
+                <f:ajax render="@form"/>
+            </h:commandButton>
+
+        </h:panelGrid>
+    </h:form>
+
+    <h:form id="formTabela">
+        <h:dataTable value="#{produtoBean.produtos}" var="produto">
+
+            <h:column>
+                <f:facet name="header">Nome</f:facet>
+                #{produto.nome}
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">Descrição</f:facet>
+                #{produto.descricao}
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">Preço</f:facet>
+                #{produto.preco}
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">Ações</f:facet>
+                <h:commandLink value="Alterar">
+                    <f:ajax render=":formProduto"/>
+                    <f:setPropertyActionListener value="#{produto}" target="#{produtoBean.produto}"/>
+                </h:commandLink> |
+                <h:commandLink action="#{produtoBean.remove(produto)}" value="Remover">
+                    <f:ajax render="@form"/>
+                </h:commandLink>
+            </h:column>
+        </h:dataTable>
+    </h:form>
+</h:body>
+</html>
