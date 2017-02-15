@@ -4,7 +4,6 @@ import br.com.caelum.uberdist.dao.ProdutoDao;
 import br.com.caelum.uberdist.modelo.Produto;
 
 import javax.enterprise.context.RequestScoped;
-import javax.faces.bean.ManagedBean;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.List;
