@@ -1,30 +1,27 @@
 <!DOCTYPE html>
-<html xmlns:h="http://java.sun.com/jsf/html">
+<html xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <h:head>
     <title>Sistema UberDist</title>
     <h:outputStylesheet library="css" name="style.css"/>
 </h:head>
 <h:body>
-    <header>
-        <h:graphicImage library="imagens" name="logo-uber.png" id="logo"/>
-    </header>
 
-    <section>
-        <h:form>
-            <h:outputLabel for="login" value="Login"/>
-            <h:inputText id="login" value="#{loginBean.usuario.login}"/>
 
-            <h:outputLabel for="senha" value="Senha"/>
-            <h:inputSecret id="senha" value="#{loginBean.usuario.senha}"/>
+    <ui:composition template="WEB-INF/_template.xhtml">
+        <ui:define name="corpo">
+            <h:form>
+                <h:outputLabel for="login" value="Login"/>
+                <h:inputText id="login" value="#{loginBean.usuario.login}"/>
 
-            <h:commandButton value="Login" action="#{loginBean.efetuaLogin}"/>
-        </h:form>
-    </section>
+                <h:outputLabel for="senha" value="Senha"/>
+                <h:inputSecret id="senha" value="#{loginBean.usuario.senha}"/>
 
-    <footer>
-        Copyright 2016 - Todos os direitos reservados à Fernando Furtado
-    </footer>
+                <h:commandButton value="Login" action="#{loginBean.efetuaLogin}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
 
 </h:body>
 </html>

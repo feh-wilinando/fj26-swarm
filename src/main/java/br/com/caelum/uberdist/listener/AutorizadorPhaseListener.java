@@ -40,7 +40,7 @@ public class AutorizadorPhaseListener implements PhaseListener {
             return;
         }
 
-        handler.handleNavigation(context, null, "loign?faces-redirect=true");
+        handler.handleNavigation(context, null, "login?faces-redirect=true");
 
         context.renderResponse();
 
