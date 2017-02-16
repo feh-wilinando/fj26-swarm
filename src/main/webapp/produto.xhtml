@@ -10,6 +10,13 @@
 
     <header>
         <h:graphicImage library="imagens" name="logo-uber.png" id="logo"/>
+
+        <div id="usuarioLogado">
+            <h:form rendered="#{usuarioLogadoBean.logado}">
+                <h:outputText value="Logado como: #{usuarioLogadoBean.usuario.login}"/>
+                <h:commandLink value="[Sair]" action="#{loginBean.logout}"/>
+            </h:form>
+        </div>
     </header>
 
 
@@ -22,19 +29,19 @@
             <h:inputHidden value="#{produtoBean.produto.id}"/>
 
 
-                <h:outputLabel value="Nome:" for="nome"/>
-                <h:inputText id="nome" value="#{produtoBean.produto.nome}"/>
-                <h:outputLabel value="Descrição:" for="descricao"/>
-                <h:inputTextarea id="descricao" value="#{produtoBean.produto.descricao}"/>
-                <h:outputLabel value="Preço:" for="preco"/>
-                <h:inputText id="preco" value="#{produtoBean.produto.preco}"/>
-                <h:commandButton value="Gravar" action="#{produtoBean.gravar}">
-                    <f:ajax render="@form :formTabela" execute="@form"/>
-                </h:commandButton>
-                <h:commandButton value="Cancelar" style="display:#{not empty produtoBean.produto.id? 'block': 'none'}"
-                                 action="${produtoBean.cancelar}">
-                    <f:ajax render="@form"/>
-                </h:commandButton>
+            <h:outputLabel value="Nome:" for="nome"/>
+            <h:inputText id="nome" value="#{produtoBean.produto.nome}"/>
+            <h:outputLabel value="Descrição:" for="descricao"/>
+            <h:inputTextarea id="descricao" value="#{produtoBean.produto.descricao}"/>
+            <h:outputLabel value="Preço:" for="preco"/>
+            <h:inputText id="preco" value="#{produtoBean.produto.preco}"/>
+            <h:commandButton value="Gravar" action="#{produtoBean.gravar}">
+                <f:ajax render="@form :formTabela" execute="@form"/>
+            </h:commandButton>
+            <h:commandButton value="Cancelar" style="display:#{not empty produtoBean.produto.id? 'block': 'none'}"
+                             action="${produtoBean.cancelar}">
+                <f:ajax render="@form"/>
+            </h:commandButton>
 
         </h:form>
 

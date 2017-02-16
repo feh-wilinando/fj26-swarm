@@ -3,20 +3,22 @@ package br.com.caelum.uberdist.beans;
 import br.com.caelum.uberdist.dao.UsuarioDao;
 import br.com.caelum.uberdist.modelo.Usuario;
 
-import javax.enterprise.context.SessionScoped;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import java.io.Serializable;
 
 /**
  * Created by nando on 15/02/17.
  */
 @Named
-@SessionScoped
-public class LoginBean implements Serializable {
+@RequestScoped
+public class LoginBean {
 
     @Inject
     private UsuarioDao dao;
+
+    @Inject
+    private UsuarioLogadoBean usuairoLogado;
 
     private Usuario usuario = new Usuario();
 
@@ -24,11 +26,17 @@ public class LoginBean implements Serializable {
     public String efetuaLogin(){
 
         if (dao.existe(usuario)){
+            usuairoLogado.logar(usuario);
             return "produto?faces-redirect=true";
         }else {
             return "login";
         }
 
+    }
+
+    public String logout(){
+        usuairoLogado.deslogar();
+        return "login?faces-redirect=true";
     }
 
     public Usuario getUsuario() {
