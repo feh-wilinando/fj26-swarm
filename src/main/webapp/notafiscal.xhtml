@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+
+<ui:composition template="WEB-INF/_template.xhtml">
+    <ui:define name="corpo">
+        <h:form id="formNota">
+
+            <fieldset>
+                <legend>Dados da nota</legend>
+
+                <h:outputLabel value="CNPJ" for="cnpj"/>
+                <h:inputText id="cnpj" value="#{notafiscalBean.notafiscal.cnpj}"/>
+
+                <h:outputLabel value="Data" for="data"/>
+                <h:inputText id="data" value="#{notafiscalBean.notafiscal.data.time}">
+                    <f:convertDateTime pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
+                </h:inputText>
+            </fieldset>
+
+
+            <fieldset>
+                <legend>Dados do produto</legend>
+
+                <h:outputLabel value="Produto" for="produto"/>
+                <h:selectOneMenu id="produto" value="#{notafiscalBean.idProdutoSelecionado}">
+                    <f:selectItems value="#{notafiscalBean.produtos}" var="p" itemLabel="#{p.nome}"
+                                   itemValue="#{p.id}"/>
+                </h:selectOneMenu>
+
+                <h:outputLabel value="Quantidade" for="quantidade"/>
+                <h:inputText id="quantidade" value="#{notafiscalBean.item.quantidade}"/>
+
+                <h:commandButton value="Adicionar Item" action="#{notafiscalBean.adicionarItem}">
+                    <f:ajax execute="@form" render=":formNota:listaDeItens :formNota:produto :formNota:quantidade"/>
+                </h:commandButton>
+            </fieldset>
+
+
+            <h:dataTable value="#{notafiscalBean.notafiscal.itens}" var="item" styleClass="dados"
+                         rowClasses="par, impar" id="listaDeItens">
+
+                <h:column>
+                    <f:facet name="header">Produto</f:facet>
+                    #{item.produto.nome}
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">Preço</f:facet>
+                    #{item.valorUnitario}
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">Quantidade</f:facet>
+                    #{item.quantidade}
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">Total</f:facet>
+                    #{item.quantidade * item.valorUnitario}
+                </h:column>
+
+            </h:dataTable>
+
+            <h:commandButton value="Gravar" action="#{notafiscalBean.gravar}"/>
+        </h:form>
+    </ui:define>
+</ui:composition>
+
+</html>

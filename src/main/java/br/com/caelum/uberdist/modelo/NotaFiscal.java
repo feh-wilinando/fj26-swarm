@@ -1,6 +1,7 @@
 package br.com.caelum.uberdist.modelo;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -16,10 +17,10 @@ public class NotaFiscal {
     private String cnpj;
 
     @Temporal(TemporalType.DATE)
-    private Calendar data;
+    private Calendar data = Calendar.getInstance();
 
     @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "notaFiscal")
-    private List<Item> itens;
+    private List<Item> itens = new ArrayList<>();
 
     public Long getId() {
         return id;
