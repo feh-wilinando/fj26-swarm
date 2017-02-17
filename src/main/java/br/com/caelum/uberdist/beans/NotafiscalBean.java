@@ -5,6 +5,7 @@ import br.com.caelum.uberdist.dao.ProdutoDao;
 import br.com.caelum.uberdist.modelo.Item;
 import br.com.caelum.uberdist.modelo.NotaFiscal;
 import br.com.caelum.uberdist.modelo.Produto;
+import br.com.caelum.uberdist.tx.Transactional;
 
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
@@ -79,6 +80,7 @@ public class NotafiscalBean implements Serializable{
 
     }
 
+    @Transactional
     public String  gravar() {
         notaFiscalDao.adiciona(notafiscal);
 

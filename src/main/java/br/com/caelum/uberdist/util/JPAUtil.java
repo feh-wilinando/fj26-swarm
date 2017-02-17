@@ -1,6 +1,7 @@
 package br.com.caelum.uberdist.util;
 
 import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.context.RequestScoped;
 import javax.enterprise.inject.Disposes;
 import javax.enterprise.inject.Produces;
 import javax.persistence.EntityManager;
@@ -17,6 +18,7 @@ public class JPAUtil {
 
 
     @Produces
+    @RequestScoped
     public EntityManager getEntityManager(){
         return factory.createEntityManager();
     }

@@ -2,6 +2,7 @@ package br.com.caelum.uberdist.beans;
 
 import br.com.caelum.uberdist.dao.ProdutoDao;
 import br.com.caelum.uberdist.modelo.Produto;
+import br.com.caelum.uberdist.tx.Transactional;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -21,8 +22,9 @@ public class ProdutoBean {
     private Produto produto = new Produto();
     private List<Produto> produtos;
 
-    public void gravar(){
 
+    @Transactional
+    public void gravar(){
         if (produto.getId() == null) {
             dao.adiciona(produto);
         } else {
@@ -51,6 +53,7 @@ public class ProdutoBean {
         return produtos;
     }
 
+    @Transactional
     public void remove(Produto produto) {
         produtos.remove(produto);
         dao.remove(produto);
