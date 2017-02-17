@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<ui:composition template="WEB-INF/_template.xhtml">
+    <ui:define name="corpo">
+        <h:form id="formItem">
+            <fieldset>
+                <legend>Dados do produto</legend>
+
+                <h:outputLabel value="Produto" for="produto"/>
+                <h:selectOneMenu id="produto" value="#{wizardNotaFiscalBean.idProdutoSelecionado}">
+                    <f:selectItems value="#{wizardNotaFiscalBean.produtos}" var="p" itemLabel="#{p.nome}"
+                                   itemValue="#{p.id}"/>
+                </h:selectOneMenu>
+
+                <h:outputLabel value="Quantidade" for="quantidade"/>
+                <h:inputText id="quantidade" value="#{wizardNotaFiscalBean.item.quantidade}"/>
+
+                <h:commandButton value="Adicionar Item" action="#{wizardNotaFiscalBean.adicionarItem}">
+                    <f:ajax execute="@form" render=":formItem:listaDeItens :formItem:produto :formItem:quantidade"/>
+                </h:commandButton>
+            </fieldset>
+
+
+            <h:dataTable value="#{wizardNotaFiscalBean.notaFiscal.itens}" var="item" styleClass="dados"
+                         rowClasses="par, impar" id="listaDeItens">
+
+                <h:column>
+                    <f:facet name="header">Produto</f:facet>
+                    #{item.produto.nome}
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">Preço</f:facet>
+                    #{item.valorUnitario}
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">Quantidade</f:facet>
+                    #{item.quantidade}
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">Total</f:facet>
+                    #{item.quantidade * item.valorUnitario}
+                </h:column>
+
+            </h:dataTable>
+
+            <div>
+                <h:commandButton value="Voltar" action="#{wizardNotaFiscalBean.goToWizard}"/>
+                <h:commandButton value="Gravar" action="#{wizardNotaFiscalBean.gravar}"/>
+            </div>
+        </h:form>
+    </ui:define>
+</ui:composition>
+
+</html>
