@@ -1,0 +1,16 @@
+package br.com.caelum.uberdist.util;
+
+import javax.inject.Qualifier;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+
+/**
+ * Created by nando on 17/02/17.
+ */
+@Qualifier
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.FIELD)
+public @interface EmailComercial {
+}
