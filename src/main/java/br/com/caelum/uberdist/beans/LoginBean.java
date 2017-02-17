@@ -4,6 +4,7 @@ import br.com.caelum.uberdist.dao.UsuarioDao;
 import br.com.caelum.uberdist.modelo.Usuario;
 
 import javax.enterprise.context.RequestScoped;
+import javax.enterprise.event.Event;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -18,6 +19,9 @@ public class LoginBean {
     private UsuarioDao dao;
 
     @Inject
+    private Event<Usuario> event;
+
+    @Inject
     private UsuarioLogadoBean usuairoLogado;
 
     private Usuario usuario = new Usuario();
@@ -26,6 +30,7 @@ public class LoginBean {
     public String efetuaLogin(){
 
         if (dao.existe(usuario)){
+            event.fire(usuario);
             usuairoLogado.logar(usuario);
             return "produto?faces-redirect=true";
         }else {
