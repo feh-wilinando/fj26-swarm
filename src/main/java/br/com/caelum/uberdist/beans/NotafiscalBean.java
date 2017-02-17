@@ -6,6 +6,7 @@ import br.com.caelum.uberdist.modelo.Item;
 import br.com.caelum.uberdist.modelo.NotaFiscal;
 import br.com.caelum.uberdist.modelo.Produto;
 import br.com.caelum.uberdist.tx.Transactional;
+import br.com.caelum.uberdist.util.ViewModel;
 
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
@@ -16,8 +17,7 @@ import java.util.List;
 /**
  * Created by nando on 17/02/17.
  */
-@ViewScoped
-@Named
+@ViewModel
 public class NotafiscalBean implements Serializable{
 
     @Inject

@@ -4,17 +4,15 @@ import br.com.caelum.uberdist.dao.ProdutoDao;
 import br.com.caelum.uberdist.modelo.Produto;
 import br.com.caelum.uberdist.tx.Transactional;
 
-import javax.enterprise.context.RequestScoped;
+import javax.enterprise.inject.Model;
 import javax.inject.Inject;
-import javax.inject.Named;
 import java.util.List;
 
 
 /**
  * Created by nando on 13/02/17.
  */
-@Named
-@RequestScoped
+@Model
 public class ProdutoBean {
 
     @Inject

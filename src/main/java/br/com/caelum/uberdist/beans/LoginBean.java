@@ -3,19 +3,16 @@ package br.com.caelum.uberdist.beans;
 import br.com.caelum.uberdist.dao.UsuarioDao;
 import br.com.caelum.uberdist.modelo.Usuario;
 
-import javax.enterprise.context.RequestScoped;
 import javax.enterprise.event.Event;
 import javax.enterprise.inject.Any;
 import javax.enterprise.inject.Instance;
+import javax.enterprise.inject.Model;
 import javax.inject.Inject;
-import javax.inject.Named;
-import java.util.stream.Stream;
 
 /**
  * Created by nando on 15/02/17.
  */
-@Named
-@RequestScoped
+@Model
 public class LoginBean {
 
     @Inject
