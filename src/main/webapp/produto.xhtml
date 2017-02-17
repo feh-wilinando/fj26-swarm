@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:caelum="http://java.sun.com/jsf/composite/caelum">
 <h:head>
     <title>Sistema de Notas Fiscais</title>
     <h:outputStylesheet library="css" name="style.css"/>
@@ -26,9 +26,10 @@
                 <h:inputTextarea id="descricao" value="#{produtoBean.produto.descricao}"/>
                 <h:outputLabel value="Preço:" for="preco"/>
                 <h:inputText id="preco" value="#{produtoBean.produto.preco}"/>
-                <h:commandButton value="Gravar" action="#{produtoBean.gravar}">
-                    <f:ajax render="@form :formTabela" execute="@form"/>
-                </h:commandButton>
+                <h:message for="preco"/>
+
+                <caelum:ajaxButton action="#{produtoBean.gravar}" value="Gravar" render="@form :formTabela" execute="@form"/>
+
                 <h:commandButton value="Cancelar" style="display:#{not empty produtoBean.produto.id? 'block': 'none'}"
                                  action="${produtoBean.cancelar}">
                     <f:ajax render="@form"/>
