@@ -1,5 +1,6 @@
 package br.com.caelum.uberdist.beans;
 
+import br.com.caelum.uberdist.dao.Dao;
 import br.com.caelum.uberdist.dao.NotaFiscalDao;
 import br.com.caelum.uberdist.dao.ProdutoDao;
 import br.com.caelum.uberdist.modelo.Item;
@@ -21,10 +22,10 @@ import java.util.List;
 public class NotafiscalBean implements Serializable{
 
     @Inject
-    private NotaFiscalDao notaFiscalDao;
+    private Dao<NotaFiscal> notaFiscalDao;
 
     @Inject
-    private ProdutoDao produtoDao;
+    private Dao<Produto> produtoDao;
 
     private Item item = new Item();
     private NotaFiscal notafiscal = new NotaFiscal();

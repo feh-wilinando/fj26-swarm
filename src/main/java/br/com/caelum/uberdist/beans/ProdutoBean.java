@@ -1,6 +1,6 @@
 package br.com.caelum.uberdist.beans;
 
-import br.com.caelum.uberdist.dao.ProdutoDao;
+import br.com.caelum.uberdist.dao.Dao;
 import br.com.caelum.uberdist.modelo.Produto;
 import br.com.caelum.uberdist.tx.Transactional;
 
@@ -16,7 +16,7 @@ import java.util.List;
 public class ProdutoBean {
 
     @Inject
-    private ProdutoDao dao;
+    private Dao<Produto> dao;
     private Produto produto = new Produto();
     private List<Produto> produtos;
 

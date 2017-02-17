@@ -1,19 +1,21 @@
 package br.com.caelum.uberdist.dao;
 
+import java.io.Serializable;
 import java.util.List;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.criteria.CriteriaQuery;
 
-public class Dao<T> {
+public class Dao<T> implements Serializable{
 	
 	private final Class<T> classe;
 
 	@Inject
 	private EntityManager manager;
 	
-	public Dao(Class<T> classe) {
+	public Dao(Class<T> classe, EntityManager manager) {
 		this.classe = classe;
+		this.manager = manager;
 	}
 
 	public void adiciona(T t) {
