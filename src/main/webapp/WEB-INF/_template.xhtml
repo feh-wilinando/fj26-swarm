@@ -7,7 +7,9 @@
 -->
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <h:head>
     <h:outputStylesheet library="css" name="style.css"/>
@@ -24,6 +26,17 @@
         </div>
     </header>
     <section>
+        <h:form rendered="#{usuarioLogadoBean.logado}">
+            <p:menubar>
+                <p:menuitem value="Produtos" url="produto.xhtml" icon="ui-icon ui-icon-document"/>
+                <p:submenu label="Notas Fiscais">
+                    <p:menuitem value="Cadastro" url="notafiscal.xhtml"/>
+                    <p:menuitem value="Wizard" url="wizard.xhtml"/>
+                    <p:menuitem value="Listagem" url="lista-notasfiscais.xhtml"/>
+                </p:submenu>
+                <p:menuitem value="Sair" action="#{loginBean.logout}"/>
+            </p:menubar>
+        </h:form>
         <ui:insert name="corpo"/>
     </section>
     <footer>
