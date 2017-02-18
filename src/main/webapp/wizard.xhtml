@@ -14,16 +14,16 @@
                 <fieldset>
                     <legend>Dados da nota</legend>
 
-                    <h:outputLabel value="CNPJ" for="cnpj"/>
+                    <p:outputLabel value="CNPJ" for="cnpj"/>
                     <p:inputMask mask="99.999.999/9999-99" id="cnpj" value="#{wizardNotaFiscalBean.notaFiscal.cnpj}"/>
 
-                    <h:outputLabel value="Data" for="data"/>
+                    <p:outputLabel value="Data" for="data"/>
                     <p:calendar id="data" value="#{wizardNotaFiscalBean.notaFiscal.data.time}">
                         <f:convertDateTime pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
                     </p:calendar>
                 </fieldset>
 
-                <h:commandButton value="next" action="#{wizardNotaFiscalBean.goToDetail}"/>
+                <p:commandButton value="next" action="#{wizardNotaFiscalBean.goToDetail}" process="@form"/>
 
             </h:form>
         </ui:define>

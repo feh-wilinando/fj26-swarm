@@ -15,10 +15,10 @@
             <fieldset>
                 <legend>Dados da nota</legend>
 
-                <h:outputLabel value="CNPJ" for="cnpj"/>
+                <p:outputLabel value="CNPJ" for="cnpj"/>
                 <p:inputMask mask="99.999.999/9999-99" id="cnpj" value="#{notafiscalBean.notafiscal.cnpj}"/>
 
-                <h:outputLabel value="Data" for="data"/>
+                <p:outputLabel value="Data" for="data"/>
                 <p:calendar id="data" value="#{notafiscalBean.notafiscal.data.time}">
                     <f:convertDateTime pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
                 </p:calendar>
@@ -28,18 +28,17 @@
             <fieldset>
                 <legend>Dados do produto</legend>
 
-                <h:outputLabel value="Produto" for="produto"/>
+                <p:outputLabel value="Produto" for="produto"/>
                 <h:selectOneMenu id="produto" value="#{notafiscalBean.idProdutoSelecionado}">
                     <f:selectItems value="#{notafiscalBean.produtos}" var="p" itemLabel="#{p.nome}"
                                    itemValue="#{p.id}"/>
                 </h:selectOneMenu>
 
-                <h:outputLabel value="Quantidade" for="quantidade"/>
-                <h:inputText id="quantidade" value="#{notafiscalBean.item.quantidade}"/>
+                <p:outputLabel value="Quantidade" for="quantidade"/>
+                <p:inputText id="quantidade" value="#{notafiscalBean.item.quantidade}"/>
 
-                <h:commandButton value="Adicionar Item" action="#{notafiscalBean.adicionarItem}">
-                    <f:ajax execute="@form" render=":formNota:listaDeItens :formNota:produto :formNota:quantidade"/>
-                </h:commandButton>
+                <p:commandButton value="Adicionar Item" action="#{notafiscalBean.adicionarItem}" process="@form" update=":formNota:listaDeItens :formNota:produto :formNota:quantidade"/>
+
             </fieldset>
 
 
@@ -64,7 +63,7 @@
 
             </p:dataTable>
 
-            <h:commandButton value="Gravar" action="#{notafiscalBean.gravar}"/>
+            <p:commandButton value="Gravar" action="#{notafiscalBean.gravar}" process="@form"/>
         </h:form>
     </ui:define>
 </ui:composition>

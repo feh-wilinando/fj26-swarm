@@ -12,18 +12,16 @@
             <fieldset>
                 <legend>Dados do produto</legend>
 
-                <h:outputLabel value="Produto" for="produto"/>
+                <p:outputLabel value="Produto" for="produto"/>
                 <h:selectOneMenu id="produto" value="#{wizardNotaFiscalBean.idProdutoSelecionado}">
                     <f:selectItems value="#{wizardNotaFiscalBean.produtos}" var="p" itemLabel="#{p.nome}"
                                    itemValue="#{p.id}"/>
                 </h:selectOneMenu>
 
-                <h:outputLabel value="Quantidade" for="quantidade"/>
-                <h:inputText id="quantidade" value="#{wizardNotaFiscalBean.item.quantidade}"/>
+                <p:outputLabel value="Quantidade" for="quantidade"/>
+                <p:inputText id="quantidade" value="#{wizardNotaFiscalBean.item.quantidade}"/>
 
-                <h:commandButton value="Adicionar Item" action="#{wizardNotaFiscalBean.adicionarItem}">
-                    <f:ajax execute="@form" render=":formItem:listaDeItens :formItem:produto :formItem:quantidade"/>
-                </h:commandButton>
+                <p:commandButton value="Adicionar Item" action="#{wizardNotaFiscalBean.adicionarItem}" process="@form" update=":formItem:listaDeItens :formItem:produto :formItem:quantidade"/>
             </fieldset>
 
 
@@ -49,8 +47,8 @@
             </p:dataTable>
 
             <div>
-                <h:commandButton value="Voltar" action="#{wizardNotaFiscalBean.goToWizard}"/>
-                <h:commandButton value="Gravar" action="#{wizardNotaFiscalBean.gravar}"/>
+                <p:commandButton value="Voltar" action="#{wizardNotaFiscalBean.goToWizard}"/>
+                <p:commandButton value="Gravar" action="#{wizardNotaFiscalBean.gravar}" process="@form"/>
             </div>
         </h:form>
     </ui:define>
