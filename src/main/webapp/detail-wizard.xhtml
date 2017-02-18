@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:p="http://primefaces.org/ui">
 
 <ui:composition template="WEB-INF/_template.xhtml">
     <ui:define name="corpo">
@@ -27,30 +27,26 @@
             </fieldset>
 
 
-            <h:dataTable value="#{wizardNotaFiscalBean.notaFiscal.itens}" var="item" styleClass="dados"
-                         rowClasses="par, impar" id="listaDeItens">
+            <p:dataTable value="#{wizardNotaFiscalBean.notaFiscal.itens}" var="item" styleClass="dados"
+                         rowClasses="par, impar" id="listaDeItens" rows="5" paginator="true" lazy="true">
 
-                <h:column>
-                    <f:facet name="header">Produto</f:facet>
+                <p:column headerText="Produto">
                     #{item.produto.nome}
-                </h:column>
+                </p:column>
 
-                <h:column>
-                    <f:facet name="header">Preço</f:facet>
+                <p:column headerText="Preço">
                     #{item.valorUnitario}
-                </h:column>
+                </p:column>
 
-                <h:column>
-                    <f:facet name="header">Quantidade</f:facet>
+                <p:column headerText="Quantidade">
                     #{item.quantidade}
-                </h:column>
+                </p:column>
 
-                <h:column>
-                    <f:facet name="header">Total</f:facet>
+                <p:column headerText="Total">
                     #{item.quantidade * item.valorUnitario}
-                </h:column>
+                </p:column>
 
-            </h:dataTable>
+            </p:dataTable>
 
             <div>
                 <h:commandButton value="Voltar" action="#{wizardNotaFiscalBean.goToWizard}"/>

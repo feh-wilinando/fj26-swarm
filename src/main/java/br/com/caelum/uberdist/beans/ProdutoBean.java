@@ -1,8 +1,10 @@
 package br.com.caelum.uberdist.beans;
 
 import br.com.caelum.uberdist.dao.Dao;
+import br.com.caelum.uberdist.lazydatamodel.LazyDataModelGenerico;
 import br.com.caelum.uberdist.modelo.Produto;
 import br.com.caelum.uberdist.tx.Transactional;
+import org.primefaces.model.LazyDataModel;
 
 import javax.enterprise.inject.Model;
 import javax.inject.Inject;
@@ -18,7 +20,9 @@ public class ProdutoBean {
     @Inject
     private Dao<Produto> dao;
     private Produto produto = new Produto();
-    private List<Produto> produtos;
+
+    @Inject
+    private LazyDataModelGenerico<Produto> produtos;
 
 
     @Transactional
@@ -29,12 +33,12 @@ public class ProdutoBean {
             dao.atualiza(produto);
         }
 
-        produtos = dao.listaTodos();
         produto = new Produto();
     }
 
 
     public Produto getProduto() {
+        produtos.refresh();
         return produto;
     }
 
@@ -42,18 +46,13 @@ public class ProdutoBean {
         this.produto = produto;
     }
 
-    public List<Produto> getProdutos(){
-        if (produtos == null){
-            System.out.println("carregando produtos...");
-            produtos = dao.listaTodos();
-        }
-
+    public LazyDataModelGenerico<Produto> getProdutos(){
         return produtos;
     }
 
     @Transactional
     public void remove(Produto produto) {
-        produtos.remove(produto);
+
         dao.remove(produto);
     }
 

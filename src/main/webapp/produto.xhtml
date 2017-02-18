@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:caelum="http://java.sun.com/jsf/composite/caelum">
+      xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:caelum="http://java.sun.com/jsf/composite/caelum" xmlns:p="http://primefaces.org/ui">
 <h:head>
     <title>Sistema de Notas Fiscais</title>
     <h:outputStylesheet library="css" name="style.css"/>
@@ -38,25 +39,21 @@
             </h:form>
 
             <h:form id="formTabela">
-                <h:dataTable value="#{produtoBean.produtos}" var="produto" styleClass="dados" rowClasses="par, impar">
+                <p:dataTable value="#{produtoBean.produtos}" var="produto" styleClass="dados" rowClasses="par, impar" paginator="true" rows="5" lazy="true" binding="#{produtoBean.produtos.dataTable}">
 
-                    <h:column>
-                        <f:facet name="header">Nome</f:facet>
+                    <p:column headerText="Nome">
                         #{produto.nome}
-                    </h:column>
+                    </p:column>
 
-                    <h:column>
-                        <f:facet name="header">Descrição</f:facet>
+                    <p:column headerText="Descrição">
                         #{produto.descricao}
-                    </h:column>
+                    </p:column>
 
-                    <h:column>
-                        <f:facet name="header">Preço</f:facet>
+                    <p:column headerText="Preço">
                         #{produto.preco}
-                    </h:column>
+                    </p:column>
 
-                    <h:column>
-                        <f:facet name="header">Ações</f:facet>
+                    <p:column headerText="Ações">
                         <h:commandLink value="Alterar">
                             <f:ajax render=":formProduto"/>
                             <f:setPropertyActionListener value="#{produto}" target="#{produtoBean.produto}"/>
@@ -64,8 +61,8 @@
                         <h:commandLink action="#{produtoBean.remove(produto)}" value="Remover">
                             <f:ajax render="@form"/>
                         </h:commandLink>
-                    </h:column>
-                </h:dataTable>
+                    </p:column>
+                </p:dataTable>
             </h:form>
         </ui:define>
     </ui:composition>
