@@ -14,6 +14,7 @@ import javax.inject.Named;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by nando on 17/02/17.
@@ -102,5 +103,12 @@ public class WizardNotaFiscalBean implements Serializable {
         notaFiscalDao.adiciona(notaFiscal);
         conversation.end();
         return "wizard?faces-redirect=true";
+    }
+
+    public List<Produto> autoCompletar(String nome) {
+        return produtos
+                .stream()
+                   .filter(p -> p.getNome().toLowerCase().contains(nome.toLowerCase()))
+                    .collect(Collectors.toList());
     }
 }

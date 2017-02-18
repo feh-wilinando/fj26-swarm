@@ -17,5 +17,9 @@ public class QuantidadePorProduto {
 	public Long getQuantidade() {
 		return quantidade;
 	}
+
+	public String getTitulo(){
+		return produto.getNome();
+	}
 	
 }

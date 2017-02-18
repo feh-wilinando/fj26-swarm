@@ -9,11 +9,14 @@ import br.com.caelum.uberdist.modelo.Produto;
 import br.com.caelum.uberdist.tx.Transactional;
 import br.com.caelum.uberdist.util.ViewModel;
 
+import javax.annotation.PostConstruct;
+import javax.el.MethodExpression;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by nando on 17/02/17.
@@ -31,7 +34,12 @@ public class NotafiscalBean implements Serializable{
     private NotaFiscal notafiscal = new NotaFiscal();
     private Long idProdutoSelecionado;
     private List<Produto> produtos;
+    private MethodExpression completeProduto;
 
+    @PostConstruct
+    public void postConstruct() {
+        this.produtos = produtoDao.listaTodos();
+    }
 
     public NotaFiscal getNotafiscal() {
         return notafiscal;
@@ -57,14 +65,6 @@ public class NotafiscalBean implements Serializable{
         this.idProdutoSelecionado = idProdutoSelecionado;
     }
 
-    public List<Produto> getProdutos() {
-
-        if(produtos == null){
-            produtos = produtoDao.listaTodos();
-        }
-
-        return produtos;
-    }
 
     public void adicionarItem() {
 
@@ -86,5 +86,12 @@ public class NotafiscalBean implements Serializable{
         notaFiscalDao.adiciona(notafiscal);
 
         return "notafiscal?faces-redirect=true";
+    }
+
+    public List<Produto> autoCompletar(String nome) {
+        return produtos
+                .stream()
+                    .filter(p -> p.getNome().toLowerCase().contains(nome.toLowerCase()))
+                        .collect(Collectors.toList());
     }
 }

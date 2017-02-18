@@ -24,6 +24,7 @@
                 <h:commandLink value="[Sair]" action="#{loginBean.logout}" rendered="#{usuarioLogadoBean.logado}"/>
                 <p:themeSwitcher value="#{temaBean.tema}">
                     <f:selectItems value="#{temaBean.temas}"/>
+                    <f:ajax/>
                 </p:themeSwitcher>
             </h:form>
         </div>
@@ -32,6 +33,7 @@
         <h:form rendered="#{usuarioLogadoBean.logado}">
             <p:menubar>
                 <p:menuitem value="Produtos" url="produto.xhtml" icon="ui-icon ui-icon-document"/>
+                <p:menuitem value="Gráficos" url="grafico.xhtml"/>
                 <p:submenu label="Notas Fiscais">
                     <p:menuitem value="Cadastro" url="notafiscal.xhtml"/>
                     <p:menuitem value="Wizard" url="wizard.xhtml"/>

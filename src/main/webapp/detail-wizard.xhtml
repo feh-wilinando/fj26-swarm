@@ -13,10 +13,13 @@
                 <legend>Dados do produto</legend>
 
                 <p:outputLabel value="Produto" for="produto"/>
-                <h:selectOneMenu id="produto" value="#{wizardNotaFiscalBean.idProdutoSelecionado}">
-                    <f:selectItems value="#{wizardNotaFiscalBean.produtos}" var="p" itemLabel="#{p.nome}"
-                                   itemValue="#{p.id}"/>
-                </h:selectOneMenu>
+                <p:autoComplete id="produto"
+                                value="#{wizardNotaFiscalBean.idProdutoSelecionado}"
+                                completeMethod="#{wizardNotaFiscalBean.autoCompletar}"
+                                minQueryLength="1"
+                                var="produto"
+                                itemLabel="#{produto.nome}"
+                                itemValue="#{produto.id}"/>
 
                 <p:outputLabel value="Quantidade" for="quantidade"/>
                 <p:inputText id="quantidade" value="#{wizardNotaFiscalBean.item.quantidade}"/>
