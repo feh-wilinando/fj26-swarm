@@ -9,7 +9,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 <h:head>
     <h:outputStylesheet library="css" name="style.css"/>
@@ -19,9 +19,12 @@
     <header>
         <h:graphicImage library="imagens" name="logo-uber.png" id="logo"/>
         <div id="usuarioLogado">
-            <h:form rendered="#{usuarioLogadoBean.logado}">
-                <h:outputText value="Logado como: #{usuarioLogadoBean.usuario.login}"/>
-                <h:commandLink value="[Sair]" action="#{loginBean.logout}"/>
+            <h:form>
+                <h:outputText value="Logado como: #{usuarioLogadoBean.usuario.login}" rendered="#{usuarioLogadoBean.logado}"/>
+                <h:commandLink value="[Sair]" action="#{loginBean.logout}" rendered="#{usuarioLogadoBean.logado}"/>
+                <p:themeSwitcher value="#{temaBean.tema}">
+                    <f:selectItems value="#{temaBean.temas}"/>
+                </p:themeSwitcher>
             </h:form>
         </div>
     </header>
