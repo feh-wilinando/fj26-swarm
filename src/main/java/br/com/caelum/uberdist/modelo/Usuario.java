@@ -1,5 +1,7 @@
 package br.com.caelum.uberdist.modelo;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,8 +14,10 @@ public class Usuario {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 
+	@NotBlank
 	private String login;
 
+	@NotBlank
 	private String senha;
 
 	public Long getId() {

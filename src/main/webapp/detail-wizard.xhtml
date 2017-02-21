@@ -20,11 +20,13 @@
                                 var="produto"
                                 itemLabel="#{produto.nome}"
                                 itemValue="#{produto.id}"/>
+                <h:message for="produto" styleClass="erros"/>
 
                 <p:outputLabel value="Quantidade" for="quantidade"/>
                 <p:inputText id="quantidade" value="#{wizardNotaFiscalBean.item.quantidade}"/>
+                <h:message for="quantidade" styleClass="erros"/>
 
-                <p:commandButton value="Adicionar Item" action="#{wizardNotaFiscalBean.adicionarItem}" process="@form" update=":formItem:listaDeItens :formItem:produto :formItem:quantidade"/>
+                <p:commandButton value="Adicionar Item" action="#{wizardNotaFiscalBean.adicionarItem}" process="@form" update="@form :formItem:listaDeItens :formItem:produto :formItem:quantidade"/>
             </fieldset>
 
 
@@ -51,7 +53,7 @@
 
             <div>
                 <p:commandButton value="Voltar" action="#{wizardNotaFiscalBean.goToWizard}"/>
-                <p:commandButton value="Gravar" action="#{wizardNotaFiscalBean.gravar}" process="@form"/>
+                <p:commandButton value="Gravar" action="#{wizardNotaFiscalBean.gravar}" process="@form" update="@form"/>
             </div>
         </h:form>
     </ui:define>

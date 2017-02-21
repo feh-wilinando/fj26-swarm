@@ -1,6 +1,9 @@
 package br.com.caelum.uberdist.modelo;
 
 import javax.persistence.*;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 
 /**
  * Created by nando on 13/02/17.
@@ -17,7 +20,10 @@ public class Item {
     @ManyToOne
     private Produto produto;
 
+    @Min(1) @NotNull
     private Integer quantidade;
+
+    @DecimalMin("0.5")
     private Double valorUnitario;
 
     public Long getId() {

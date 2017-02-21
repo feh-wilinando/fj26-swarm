@@ -1,6 +1,9 @@
 package br.com.caelum.uberdist.modelo;
 
+import org.hibernate.validator.constraints.br.CNPJ;
+
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -14,11 +17,13 @@ public class NotaFiscal {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @CNPJ
     private String cnpj;
 
     @Temporal(TemporalType.DATE)
     private Calendar data = Calendar.getInstance();
 
+    @Size(min = 1)
     @OneToMany(cascade = CascadeType.PERSIST, mappedBy = "notaFiscal")
     private List<Item> itens = new ArrayList<>();
 

@@ -14,11 +14,13 @@
             <h:form>
                 <p:outputLabel for="login" value="Login"/>
                 <p:inputText id="login" value="#{loginBean.usuario.login}"/>
+                <h:message for="login" styleClass="erros"/>
 
                 <p:outputLabel for="senha" value="Senha"/>
                 <p:password id="senha" value="#{loginBean.usuario.senha}"/>
+                <h:message for="senha" styleClass="erros"/>
 
-                <p:commandButton value="Login" action="#{loginBean.efetuaLogin}"/>
+                <p:commandButton value="Login" action="#{loginBean.efetuaLogin}" update="@form"/>
             </h:form>
         </ui:define>
     </ui:composition>

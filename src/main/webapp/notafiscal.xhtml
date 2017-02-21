@@ -17,11 +17,13 @@
 
                 <p:outputLabel value="CNPJ" for="cnpj"/>
                 <p:inputMask mask="99.999.999/9999-99" id="cnpj" value="#{notafiscalBean.notafiscal.cnpj}"/>
+                <h:message for="cnpj" styleClass="erros"/>
 
                 <p:outputLabel value="Data" for="data"/>
                 <p:calendar id="data" value="#{notafiscalBean.notafiscal.data.time}">
                     <f:convertDateTime pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
                 </p:calendar>
+                <h:message for="data" styleClass="erros"/>
             </fieldset>
 
 
@@ -36,11 +38,13 @@
                                 var="produto"
                                 itemLabel="#{produto.nome}"
                                 itemValue="#{produto.id}"/>
+                <h:message for="produto" styleClass="erros"/>
 
                 <p:outputLabel value="Quantidade" for="quantidade"/>
                 <p:inputText id="quantidade" value="#{notafiscalBean.item.quantidade}"/>
+                <h:message for="quantidade" styleClass="erros"/>
 
-                <p:commandButton value="Adicionar Item" action="#{notafiscalBean.adicionarItem}" process="@form" update=":formNota:listaDeItens :formNota:produto :formNota:quantidade"/>
+                <p:commandButton value="Adicionar Item" action="#{notafiscalBean.adicionarItem}" process="@form" update="@form :formNota:listaDeItens :formNota:produto :formNota:quantidade"/>
 
             </fieldset>
 
@@ -66,7 +70,7 @@
 
             </p:dataTable>
 
-            <p:commandButton value="Gravar" action="#{notafiscalBean.gravar}" process="@form"/>
+            <p:commandButton value="Gravar" action="#{notafiscalBean.gravar}" process="@form" update="@form"/>
         </h:form>
     </ui:define>
 </ui:composition>

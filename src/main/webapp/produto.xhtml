@@ -23,11 +23,15 @@
 
                 <p:outputLabel value="Nome:" for="nome"/>
                 <p:inputText id="nome" value="#{produtoBean.produto.nome}"/>
+                <h:message for="nome" styleClass="erros"/>
+
                 <p:outputLabel value="Descrição:" for="descricao"/>
                 <p:inputTextarea id="descricao" value="#{produtoBean.produto.descricao}"/>
+                <h:message for="descricao" styleClass="erros"/>
+
                 <p:outputLabel value="Preço:" for="preco"/>
                 <p:inputText id="preco" value="#{produtoBean.produto.preco}"/>
-                <p:message for="preco"/>
+                <h:message for="preco" styleClass="erros"/>
 
                 <caelum:ajaxButton action="#{produtoBean.gravar}" value="Gravar" render="@form :formTabela" execute="@form"/>
 

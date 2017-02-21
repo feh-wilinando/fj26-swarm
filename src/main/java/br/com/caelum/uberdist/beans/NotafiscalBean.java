@@ -14,6 +14,8 @@ import javax.el.MethodExpression;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -32,9 +34,10 @@ public class NotafiscalBean implements Serializable{
 
     private Item item = new Item();
     private NotaFiscal notafiscal = new NotaFiscal();
+
+    @NotNull @Min(1)
     private Long idProdutoSelecionado;
     private List<Produto> produtos;
-    private MethodExpression completeProduto;
 
     @PostConstruct
     public void postConstruct() {
