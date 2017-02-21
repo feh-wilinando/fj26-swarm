@@ -1,20 +1,19 @@
 package br.com.caelum.uberdist.listener;
 
 import br.com.caelum.uberdist.beans.UsuarioLogadoBean;
+import br.com.caelum.uberdist.listener.annotations.After;
+import br.com.caelum.uberdist.listener.annotations.Phase;
 
-import javax.faces.application.ConfigurableNavigationHandlerWrapper;
+import javax.enterprise.event.Observes;
 import javax.faces.application.NavigationHandler;
-import javax.faces.component.UIViewRoot;
 import javax.faces.context.FacesContext;
 import javax.faces.event.PhaseEvent;
-import javax.faces.event.PhaseId;
-import javax.faces.event.PhaseListener;
 import javax.inject.Inject;
 
 /**
  * Created by nando on 16/02/17.
  */
-public class AutorizadorPhaseListener implements PhaseListener {
+public class AutorizadorListener {
 
 
     @Inject
@@ -26,8 +25,7 @@ public class AutorizadorPhaseListener implements PhaseListener {
     @Inject
     private NavigationHandler handler;
 
-    @Override
-    public void afterPhase(PhaseEvent phaseEvent) {
+    public void avaliaLogin(@Observes @After @Phase(Phase.Phases.RESTORE_VIEW) PhaseEvent phaseEvent) {
 
 
         String pagina = context.getViewRoot().getViewId();
@@ -46,13 +44,5 @@ public class AutorizadorPhaseListener implements PhaseListener {
 
     }
 
-    @Override
-    public void beforePhase(PhaseEvent phaseEvent) {
 
-    }
-
-    @Override
-    public PhaseId getPhaseId() {
-        return PhaseId.RESTORE_VIEW;
-    }
 }
