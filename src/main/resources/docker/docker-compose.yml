@@ -1,0 +1,24 @@
+version: '2'
+services:
+  proxy:
+    image: wilinando/fj26-proxy
+    ports:
+      - "5000:80"
+    environment:
+      - NGINX_HOST=localhost
+      - NGINX_PROXY=http://web:8080
+    links:
+      - web
+  db:
+   image: mysql
+   environment:
+      - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+      - MYSQL_DATABASE=fj26
+  web:
+    image: wilinando/fj26-app
+    links:
+      - db
+    environment:
+      - DB_HOST=db
+    volumes:
+      - /Users/nando/docker/fj26-swarm/m2:/root/.m2
