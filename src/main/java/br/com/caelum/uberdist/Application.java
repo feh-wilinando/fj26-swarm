@@ -23,6 +23,7 @@ public class Application {
         ClassLoader classLoader = Application.class.getClassLoader();
 
         deployment.addAsWebInfResource(classLoader.getResource("META-INF/persistence.xml"), "classes/META-INF/persistence.xml");
+        deployment.addAsWebInfResource(classLoader.getResource("META-INF/beans.xml"), "classes/META-INF/beans.xml");
 
         addFolderToWebResource("src/main/webapp/", new File("src/main/webapp/"), deployment, false);
 
